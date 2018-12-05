@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="180dp">
+
+    <ImageView
+            android:id="@+id/restImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    <RelativeLayout
+            android:background="@color/BackItem"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="MissingConstraints">
+
+        <TextView
+                android:id="@+id/restName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:hint="Restaurant Name"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:textStyle="bold"/>
+
+        <TextView
+                android:id="@+id/restAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:hint="Restaurant Address"
+                android:textSize="16sp"
+                android:layout_below="@+id/restName"/>
+
+        <TextView
+                android:id="@+id/restPhoneNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:hint="Phone Number"
+                android:textSize="16sp"
+                android:layout_below="@+id/restName"
+                android:layout_alignParentStart="true"/>
+
+        <Button
+                android:id="@+id/restEditButton"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="Edit Info."
+                android:textColor="@color/white"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:textAllCaps="false"
+                android:layout_marginEnd="3dp"
+                android:background="@color/colorPrimaryDark"/>
+
+        <Button
+                android:id="@+id/restLocationButton"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="Location"
+                android:textColor="@color/white"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:textAllCaps="false"
+                android:layout_marginEnd="95dp"
+                android:background="@color/ButtonColor"/>
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

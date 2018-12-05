@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">SmartRestoAdminApp</string>
+
+
+    <string name="restaurantsTitle">RESTAURANTS</string>
+    <string name="title_activity_information">InformationActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <!--Strings-->
+    <string name="applicationTitle">SMART RESTO APP</string>
+    <string name="textViewEmail">Email</string>
+    <string name="textViewEmailAddress">Your email address</string>
+    <string name="textViewPassword">Password</string>
+    <string name="buttonLoginText">LOG IN</string>
+    <string name="textForgotPassword">Forgot your password?</string>
+    <string name="textResetPassword">RESET PASSWORD</string>
+    <string name="textGoBack">GO BACK</string>
+</resources>

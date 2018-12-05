@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "602583929756",
+    "firebase_url": "https://smartrestoapp.firebaseio.com",
+    "project_id": "smartrestoapp",
+    "storage_bucket": "smartrestoapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:602583929756:android:1de0a8ef9c52a9dc",
+        "android_client_info": {
+          "package_name": "com.infoarch.smartrestoadminapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "602583929756-e29p1r7q11jmqfsmq2vat3q0dgt0bjqg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMFhvYhcJP-cmuRL8KGkKhM83OBMIVsN0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:602583929756:android:f936749bcc24faea",
+        "android_client_info": {
+          "package_name": "com.infoarch.smartrestoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "602583929756-e29p1r7q11jmqfsmq2vat3q0dgt0bjqg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMFhvYhcJP-cmuRL8KGkKhM83OBMIVsN0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
