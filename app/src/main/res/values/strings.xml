@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">SmartRestoAdminApp</string>
-
-
     <string name="restaurantsTitle">RESTAURANTS</string>
     <string name="title_activity_information">InformationActivity</string>
     <string name="title_home">Home</string>

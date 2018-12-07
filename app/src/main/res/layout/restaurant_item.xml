@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="25dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        card_view:cardCornerRadius="4dp">
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ImageView
+                android:id="@+id/imageView_Image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="#3000"
+                android:layout_gravity="bottom"/>
+
+        <TextView
+                android:id="@+id/text_Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Restaurant Name"
+                android:textSize="18sp"
+                android:layout_marginTop="143dp"
+                android:layout_marginStart="5dp"
+                android:shadowColor="#000"
+                android:shadowDx="3"
+                android:shadowDy="3"
+                android:shadowRadius="3"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+
+        <TextView
+                android:id="@+id/text_Address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Restaurant Address"
+                android:layout_marginTop="175dp"
+                android:layout_marginStart="5dp"
+                android:shadowColor="#000"
+                android:shadowDx="3"
+                android:shadowDy="3"
+                android:shadowRadius="3"
+                android:textAllCaps="true"
+                android:textColor="@color/white"/>
+
+        <Button
+                android:id="@+id/button_Information"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="information"
+                android:layout_gravity="end"
+                android:layout_marginTop="150dp"
+                android:layout_marginEnd="5dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:foreground="?android:attr/selectableItemBackgroundBorderless"/>
+
+    </FrameLayout>
+
+</android.support.v7.widget.CardView>

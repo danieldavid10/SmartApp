@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var mFunctions: FirebaseFunctions
+    private val mFunctions: FirebaseFunctions by lazy{FirebaseFunctions.getInstance()}
     private lateinit var items: ArrayList<RestaurantModel>
     private lateinit var adapterRestaurant: RestaurantListAdapter
 
@@ -25,14 +25,10 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar as Toolbar)
 
-        goInfo.setOnClickListener(View.OnClickListener {
-            startActivity(
-                Intent(this, InformationActivity::class.java)
-            )
-        }) // test
+//        mFunctions = FirebaseFunctions.getInstance()
 
-        mFunctions = FirebaseFunctions.getInstance()
-
+//        testFunction()
+container
         getRestaurantList()
             .addOnCompleteListener(OnCompleteListener { task ->
                 if (!task.isSuccessful) {
@@ -63,15 +59,32 @@ class MainActivity : AppCompatActivity() {
                 }
             })
 
+
+
+        goInfo.setOnClickListener(View.OnClickListener {
+            startActivity(
+                Intent(this, HomeActivity::class.java)
+            )
+        }) // test
     }
 
     private fun getRestaurantList(): Task<ArrayList<HashMap<*, *>>> {
         return mFunctions
-            .getHttpsCallable("getUserRestaurants")
+            .getHttpsCallable("getUserAdminRestaurants")
             .call()
             .continueWith { task ->
-                val list = task.result!!.data
+                val list = task.result?.data
                 (list as HashMap<*, *>)["restaurants"] as ArrayList<HashMap<*, *>>
+            }
+    }
+
+    private fun testFunction():Task<String>{
+        return mFunctions
+            .getHttpsCallable("getRestaurants")
+            .call()
+            .continueWith { task ->
+                val result = task.result?.data as String
+                result
             }
     }
 

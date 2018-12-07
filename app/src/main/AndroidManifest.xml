@@ -21,8 +21,8 @@
         </activity>
         <activity
                 android:name=".LoginActivity"
-                android:theme="@style/NoPreview"
-                android:screenOrientation="portrait">
+                android:screenOrientation="portrait"
+                android:theme="@style/NoPreview">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -39,6 +39,8 @@
         <activity android:name=".components.ToolbarActivity">
         </activity>
         <activity android:name=".ForgotPasswordActivity">
+        </activity>
+        <activity android:name=".HomeActivity">
         </activity>
     </application>
 
