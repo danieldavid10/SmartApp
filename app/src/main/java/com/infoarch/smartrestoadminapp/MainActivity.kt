@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
+import android.view.Menu
 import android.view.View
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
@@ -14,9 +15,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    // Layout
-    private lateinit var toolbar: Toolbar
-
     private lateinit var mFunctions: FirebaseFunctions
     private lateinit var items: ArrayList<RestaurantModel>
     private lateinit var adapterRestaurant: RestaurantListAdapter
@@ -25,8 +23,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
+        setSupportActionBar(toolbar as Toolbar)
 
         goInfo.setOnClickListener(View.OnClickListener {
             startActivity(
@@ -78,4 +75,9 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
+    @Override
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.small_menu,menu)
+        return true
+    }
 }

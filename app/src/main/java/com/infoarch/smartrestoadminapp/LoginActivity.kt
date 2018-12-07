@@ -45,21 +45,19 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginIsSuccessful() {
-        val user = FirebaseAuth.getInstance().getCurrentUser()
-        if (user != null) {
+        if (mAuth.currentUser != null) {
             toastMessage("Welcome..!!")
             goMainActivity(false)
         }
     }
 
     private fun goMainActivity(start: Boolean) {
-        val mainintent = Intent(this@LoginActivity, MainActivity::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         if (!start) {
             showProgress(false)
         }
-        startActivity(mainintent)
-
-        this@LoginActivity.finish()
+        startActivity(intent)
+        this.finish()
     }
 
     private fun attemptLogin(email: String, password: String) {
