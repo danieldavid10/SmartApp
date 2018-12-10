@@ -1,96 +1,61 @@
 package com.infoarch.smartrestoadminapp
 
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.design.widget.NavigationView
+import android.support.v4.app.Fragment
+import android.support.v4.view.GravityCompat
+import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
-import android.view.Menu
-import android.view.View
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
-import com.google.firebase.functions.FirebaseFunctions
-import com.infoarch.smartrestoadminapp.adapters.RestaurantListAdapter
-import com.infoarch.smartrestoadminapp.struct.RestaurantModel
+import android.view.MenuItem
+import com.infoarch.smartrestoadminapp.fragments.NotificationsFragment
+import com.infoarch.smartrestoadminapp.fragments.RestaurantList
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
-
-    private val mFunctions: FirebaseFunctions by lazy{FirebaseFunctions.getInstance()}
-    private lateinit var items: ArrayList<RestaurantModel>
-    private lateinit var adapterRestaurant: RestaurantListAdapter
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Layout
         setSupportActionBar(toolbar as Toolbar)
-
-//        mFunctions = FirebaseFunctions.getInstance()
-
-//        testFunction()
-container
-        getRestaurantList()
-            .addOnCompleteListener(OnCompleteListener { task ->
-                if (!task.isSuccessful) {
-                    // Error Message
-                } else {
-                    if (task.result != null) {
-                        val Restaurants: ArrayList<HashMap<*, *>> = task.getResult()!!
-                        items = ArrayList<RestaurantModel>()
-                        for (restaurant in Restaurants) {
-                            items.add(
-                                RestaurantModel(
-                                    restaurant["key"].toString(),
-                                    restaurant["address"].toString(),
-                                    restaurant["bgcolor"].toString(),
-                                    restaurant["color"].toString().toInt(),
-                                    restaurant["image"].toString(),
-                                    restaurant["name"].toString(),
-                                    restaurant["phonenumber"].toString(),
-                                    restaurant["isSelected"].toString().toBoolean()
-                                )
-                            )
-                        }
-                        adapterRestaurant = RestaurantListAdapter(applicationContext, items)
-                        RestaurantsList.adapter = adapterRestaurant
-                    } else {
-                        // Error Message
-                    }
-                }
-            })
-
-
-
-        goInfo.setOnClickListener(View.OnClickListener {
-            startActivity(
-                Intent(this, HomeActivity::class.java)
-            )
-        }) // test
+        setNavDrawer()
+        if (savedInstanceState == null){
+            fragmentTransaction(RestaurantList())
+            navView.menu.getItem(0).isChecked = true
+        }
     }
 
-    private fun getRestaurantList(): Task<ArrayList<HashMap<*, *>>> {
-        return mFunctions
-            .getHttpsCallable("getUserAdminRestaurants")
-            .call()
-            .continueWith { task ->
-                val list = task.result?.data
-                (list as HashMap<*, *>)["restaurants"] as ArrayList<HashMap<*, *>>
-            }
-    }
-
-    private fun testFunction():Task<String>{
-        return mFunctions
-            .getHttpsCallable("getRestaurants")
-            .call()
-            .continueWith { task ->
-                val result = task.result?.data as String
-                result
-            }
-    }
-
-    @Override
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.small_menu,menu)
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.nav_Restaurants -> fragmentTransaction(RestaurantList())
+            R.id.nav_Notifications -> fragmentTransaction(NotificationsFragment())
+        }
+        drawerLayout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    private fun setNavDrawer() {
+        val toggle =
+            ActionBarDrawerToggle(this, drawerLayout, toolbar as Toolbar, R.string.open_drawer, R.string.close_drawer)
+        toggle.isDrawerIndicatorEnabled = true
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+        navView.setNavigationItemSelectedListener(this)
+    }
+
+    private fun fragmentTransaction(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.main_Container, fragment)
+            .commit()
+    }
+
+    override fun onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
     }
 }

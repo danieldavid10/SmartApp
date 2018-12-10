@@ -14,7 +14,9 @@
     <string name="textForgotPassword">Forgot your password?</string>
     <string name="textResetPassword">RESET PASSWORD</string>
     <string name="textGoBack">GO BACK</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="open_drawer">Navigation Drawer is open</string>
+    <string name="close_drawer">Navigation Drawer is close</string>
+    <!--Activities and fragments Titles-->
+    <string name="title_RestaurantList">Restaurants</string>
+    <string name="title_Notifications">Notifications</string>
 </resources>
