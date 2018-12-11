@@ -2,9 +2,6 @@
     <string name="app_name">SmartRestoAdminApp</string>
     <string name="restaurantsTitle">RESTAURANTS</string>
     <string name="title_activity_information">InformationActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
     <!--Strings-->
     <string name="applicationTitle">SMART RESTO APP</string>
     <string name="textViewEmail">Email</string>
@@ -16,6 +13,10 @@
     <string name="textGoBack">GO BACK</string>
     <string name="open_drawer">Navigation Drawer is open</string>
     <string name="close_drawer">Navigation Drawer is close</string>
+    <!--Navigation Titles-->
+    <string name="navigation_Information">Information</string>
+    <string name="navigation_Reservations">Reservations</string>
+    <string name="navigation_Promotions">Promotions</string>
     <!--Activities and fragments Titles-->
     <string name="title_RestaurantList">Restaurants</string>
     <string name="title_Notifications">Notifications</string>
