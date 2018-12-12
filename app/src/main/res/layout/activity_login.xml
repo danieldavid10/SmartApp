@@ -55,6 +55,8 @@
                 android:textSize="15sp"
                 android:background="@drawable/edittext_rounded"
                 android:textColorHint="@color/textColor"
+                android:drawableStart="@drawable/ic_email"
+                android:drawablePadding="10dp"
                 android:textColor="@color/textColor" tools:ignore="Autofill"/>
 
         <EditText
@@ -74,6 +76,8 @@
                 android:textSize="15sp"
                 android:background="@drawable/edittext_rounded"
                 android:textColorHint="@color/textColor"
+                android:drawableStart="@drawable/ic_password"
+                android:drawablePadding="10dp"
                 android:textColor="@color/textColor" tools:ignore="Autofill"/>
 
         <Button
