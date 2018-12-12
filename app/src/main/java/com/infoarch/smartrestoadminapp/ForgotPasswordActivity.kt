@@ -42,6 +42,10 @@ class ForgotPasswordActivity : AppCompatActivity() {
             }
         }
 
+        btn_goTab.setOnClickListener { goToActivity<RestaurantMainActivity>() }
+
+
+
     }
 
 }

@@ -4,16 +4,16 @@
     <item
             android:id="@+id/navigation_Information"
             android:icon="@drawable/ic_information"
-            android:title="@string/navigation_Information"/>
+            android:title="@string/tab_Information"/>
 
     <item
             android:id="@+id/navigation_Reservations"
             android:icon="@drawable/ic_reservation"
-            android:title="@string/navigation_Reservations"/>
+            android:title="@string/tab_Reservations"/>
 
     <item
             android:id="@+id/navigation_Promotions"
             android:icon="@drawable/ic_promotion"
-            android:title="@string/navigation_Promotions"/>
+            android:title="@string/tab_Promotions"/>
 
 </menu>

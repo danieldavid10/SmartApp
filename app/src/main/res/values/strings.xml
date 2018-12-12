@@ -13,11 +13,14 @@
     <string name="textGoBack">GO BACK</string>
     <string name="open_drawer">Navigation Drawer is open</string>
     <string name="close_drawer">Navigation Drawer is close</string>
-    <!--Navigation Titles-->
-    <string name="navigation_Information">Information</string>
-    <string name="navigation_Reservations">Reservations</string>
-    <string name="navigation_Promotions">Promotions</string>
+    <!--Tabs Titles-->
+    <string name="tab_Information">Information</string>
+    <string name="tab_Reservations">Reservations</string>
+    <string name="tab_Promotions">Promotions</string>
     <!--Activities and fragments Titles-->
     <string name="title_RestaurantList">Restaurants</string>
     <string name="title_Notifications">Notifications</string>
+    <string name="title_activity_restaurant_main">RestaurantMainActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 </resources>
