@@ -15,8 +15,7 @@
             android:id="@+id/message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:text="@string/title_home"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar" android:layout_marginTop="16dp"/>
 

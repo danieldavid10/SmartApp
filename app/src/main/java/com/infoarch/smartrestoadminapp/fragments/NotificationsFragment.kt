@@ -16,6 +16,8 @@ class NotificationsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         activity?.setTitle(R.string.title_Notifications)
+
+
         return inflater.inflate(R.layout.fragment_notifications, container, false)
     }
 }
