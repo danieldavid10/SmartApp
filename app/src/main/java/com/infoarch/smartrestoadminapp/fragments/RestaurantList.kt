@@ -11,9 +11,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.gms.tasks.Task
 import com.google.firebase.functions.FirebaseFunctions
-import com.infoarch.smartrestoadminapp.InformationActivity
 
 import com.infoarch.smartrestoadminapp.R
+import com.infoarch.smartrestoadminapp.RestaurantMainActivity
 import com.infoarch.smartrestoadminapp.adapters.RestaurantAdapter
 import com.infoarch.smartrestoadminapp.components.goToActivity
 import com.infoarch.smartrestoadminapp.components.toastMessage
@@ -97,7 +97,7 @@ class RestaurantList : Fragment() {
             }
 
             override fun onInformationClick(restaurant: RestaurantModel, position: Int) {
-                activity?.goToActivity<InformationActivity>{
+                activity?.goToActivity<RestaurantMainActivity>{
                     this.putExtra("Key",restaurant.key)
                     this.putExtra("Address",restaurant.address)
                     this.putExtra("BgColor",restaurant.bgColor)

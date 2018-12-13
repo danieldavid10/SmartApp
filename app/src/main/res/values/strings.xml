@@ -13,6 +13,10 @@
     <string name="textGoBack">GO BACK</string>
     <string name="open_drawer">Navigation Drawer is open</string>
     <string name="close_drawer">Navigation Drawer is close</string>
+
+    <string name="text_address">Address</string>
+    <string name="text_phoneNumber">Phone Number</string>
+
     <!--Tabs Titles-->
     <string name="tab_Information">Information</string>
     <string name="tab_Reservations">Reservations</string>

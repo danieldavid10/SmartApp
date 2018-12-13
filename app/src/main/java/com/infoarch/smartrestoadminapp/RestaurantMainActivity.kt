@@ -2,23 +2,29 @@ package com.infoarch.smartrestoadminapp
 
 import android.support.design.widget.TabLayout
 import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import android.support.v4.view.ViewPager
 import android.os.Bundle
+import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import com.infoarch.smartrestoadminapp.components.ToolbarActivity
+import com.infoarch.smartrestoadminapp.fragments.RestaurantInfo_Fragment
+import com.infoarch.smartrestoadminapp.struct.RestaurantModel
+import com.squareup.picasso.Picasso
 
 import kotlinx.android.synthetic.main.activity_restaurant_main.*
 import kotlinx.android.synthetic.main.fragment_restaurant_main.view.*
 
-class RestaurantMainActivity : AppCompatActivity() {
+class RestaurantMainActivity : ToolbarActivity() {
+
+    private lateinit var restaurant: RestaurantModel
+
 
     /**
      * The [android.support.v4.view.PagerAdapter] that will provide
@@ -35,6 +41,13 @@ class RestaurantMainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_restaurant_main)
 
 //        setSupportActionBar(toolbar)
+        toolbarToLoad(toolbar as Toolbar)
+        enableHomeDisplay(true)
+
+        getIntentExtras()
+
+        title = restaurant.name
+        Picasso.get().load(restaurant.image).fit().into(imageView_RestaurantLogo)
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -46,11 +59,25 @@ class RestaurantMainActivity : AppCompatActivity() {
         container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
         tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
 
-        fab.setOnClickListener { view ->
+        floatingButton.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
 
+
+    }
+
+    private fun getIntentExtras() {
+        restaurant = RestaurantModel(
+            intent.getStringExtra("Key"),
+            intent.getStringExtra("Address"),
+            intent.getStringExtra("BgColor"),
+            intent.getIntExtra("Color", 0),
+            intent.getStringExtra("Image"),
+            intent.getStringExtra("Name"),
+            intent.getStringExtra("PhoneNumber"),
+            intent.getBooleanExtra("isSelected", false)
+        )
     }
 
 
@@ -83,7 +110,24 @@ class RestaurantMainActivity : AppCompatActivity() {
         override fun getItem(position: Int): Fragment {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1)
+
+            when (position) {
+                0 -> {
+                    return RestaurantInfo_Fragment.setInformation(
+                        restaurant.name,
+                        restaurant.address,
+                        restaurant.phoneNumber
+                    )
+                }
+                1 -> {
+                    return PlaceholderFragment.newInstance(position + 1)
+                }
+                2 -> {
+                    return PlaceholderFragment.newInstance(position + 1)
+                }
+            }
+
+            return PlaceholderFragment.newInstance(position + 1) //change
         }
 
         override fun getCount(): Int {

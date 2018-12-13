@@ -10,4 +10,7 @@
     <color name="black">#000</color>
     <color name="ButtonColor">#6c1818</color>
     <color name="BackItem">#5523283b</color>
+    <color name="TransparentColor">#c0000000</color>
+    <color name="layout_Background">#E4E5EA</color>
+
 </resources>

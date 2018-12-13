@@ -22,11 +22,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        if (mAuth.currentUser != null) {
-            goMainActivity(true)
-            return
-        }
-
         buttonLogin.setOnClickListener { attemptLogin(emailEditText.text.toString(), passwordEditText.text.toString()) }
 
         textViewForgotPassword.setOnClickListener{goToActivity<ForgotPasswordActivity>()}

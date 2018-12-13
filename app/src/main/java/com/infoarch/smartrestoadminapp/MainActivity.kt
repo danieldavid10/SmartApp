@@ -6,24 +6,17 @@ import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
-import com.google.android.gms.tasks.Task
-import com.google.firebase.functions.FirebaseFunctions
-import com.infoarch.smartrestoadminapp.adapters.RestaurantAdapter
+import com.google.firebase.auth.FirebaseAuth
 import com.infoarch.smartrestoadminapp.components.goToActivity
-import com.infoarch.smartrestoadminapp.components.toastMessage
 import com.infoarch.smartrestoadminapp.fragments.NotificationsFragment
 import com.infoarch.smartrestoadminapp.fragments.RestaurantList
-import com.infoarch.smartrestoadminapp.listeners.RecyclerRestaurantListener
-import com.infoarch.smartrestoadminapp.struct.RestaurantModel
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_restaurant_list.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    private val mAuth: FirebaseAuth by lazy { FirebaseAuth.getInstance() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,13 +32,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             navView.menu.getItem(0).isChecked = true
         }
 
-
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_Restaurants -> fragmentTransaction(RestaurantList())
             R.id.nav_Notifications -> fragmentTransaction(NotificationsFragment())
+            R.id.nav_Logout -> {
+                mAuth.signOut()
+                goToActivity<LoginActivity>()
+                finish()
+            }
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true

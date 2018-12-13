@@ -15,9 +15,10 @@ class NotificationsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflate the layout for this fragment
         activity?.setTitle(R.string.title_Notifications)
+        val fragmentView =inflater.inflate(R.layout.fragment_notifications, container, false)
 
-
-        return inflater.inflate(R.layout.fragment_notifications, container, false)
+        return fragmentView
     }
 }
