@@ -12,6 +12,7 @@
     <include
             android:id="@+id/toolbar"
             layout="@layout/toolbar"/>
+
     <ImageView
             android:id="@+id/imageView_RestaurantLogo"
             android:layout_width="match_parent"

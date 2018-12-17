@@ -7,8 +7,6 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import com.infoarch.smartrestoadminapp.components.ToolbarActivity
@@ -29,13 +27,12 @@ class RestaurantMainActivity : ToolbarActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_restaurant_main)
 
+        // Toolbar
         toolbarToLoad(toolbar as Toolbar)
         enableHomeDisplay(true)
-        (toolbar as Toolbar).setNavigationOnClickListener {
-            super.onBackPressed()
-        }
+        (toolbar as Toolbar).setNavigationOnClickListener { super.onBackPressed() }
 
-        getIntentExtras()
+        restaurant = intent.getParcelableExtra("Restaurant")
 
         title = restaurant.name
         Picasso.get().load(restaurant.image).fit().into(imageView_RestaurantLogo)
@@ -51,53 +48,11 @@ class RestaurantMainActivity : ToolbarActivity() {
         tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
 
         floatingButton.setOnClickListener {
-            goToActivity<EditRestaurantActivity>{
-                this.putExtra("Key",restaurant.key)
-                this.putExtra("Address",restaurant.address)
-                this.putExtra("BgColor",restaurant.bgColor)
-                this.putExtra("Color",restaurant.color)
-                this.putExtra("Image",restaurant.image)
-                this.putExtra("Name",restaurant.name)
-                this.putExtra("PhoneNumber",restaurant.phoneNumber)
-                this.putExtra("isSelected",restaurant.isSelected)
+            goToActivity<EditRestaurantActivity> {
+                this.putExtra("Restaurant", restaurant)
             }
         }
-
-
     }
-
-    private fun getIntentExtras() {
-        restaurant = RestaurantModel(
-            intent.getStringExtra("Key"),
-            intent.getStringExtra("Address"),
-            intent.getStringExtra("BgColor"),
-            intent.getIntExtra("Color", 0),
-            intent.getStringExtra("Image"),
-            intent.getStringExtra("Name"),
-            intent.getStringExtra("PhoneNumber"),
-            intent.getBooleanExtra("isSelected", false)
-        )
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_restaurant_main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        val id = item.itemId
-
-        if (id == R.id.action_settings) {
-            return true
-        }
-
-        return super.onOptionsItemSelected(item)
-    }
-
 
     /**
      * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -111,11 +66,7 @@ class RestaurantMainActivity : ToolbarActivity() {
 
             when (position) {
                 0 -> {
-                    return RestaurantInfo_Fragment.setInformation(
-                        restaurant.name,
-                        restaurant.address,
-                        restaurant.phoneNumber
-                    )
+                    return RestaurantInfo_Fragment.setInformation(restaurant)
                 }
                 1 -> {
                     return PlaceholderFragment.newInstance(position + 1)

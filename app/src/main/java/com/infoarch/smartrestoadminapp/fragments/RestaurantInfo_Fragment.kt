@@ -8,9 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.infoarch.smartrestoadminapp.R
+import com.infoarch.smartrestoadminapp.struct.RestaurantModel
 import kotlinx.android.synthetic.main.fragment_restaurant_info_.view.*
 
 class RestaurantInfo_Fragment : Fragment() {
+
+    private var restaurant:RestaurantModel? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -18,24 +21,20 @@ class RestaurantInfo_Fragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_restaurant_info_, container, false)
-        rootView.text_RestaurantTitle.text = arguments?.getString("Name")
-        rootView.text_RestaurantAddress.text = arguments?.getString("Address")
-        rootView.text_PhoneNumber.text = arguments?.getString("Phone")
+        restaurant = arguments?.getParcelable("Restaurant")
+        rootView.text_RestaurantTitle.text = restaurant?.name
+        rootView.text_RestaurantAddress.text = restaurant?.address
+        rootView.text_PhoneNumber.text = restaurant?.phoneNumber
         return rootView
     }
 
     companion object {
-
-        fun setInformation(name:String,address:String,phone:String):RestaurantInfo_Fragment{
+        fun setInformation(restaurant: RestaurantModel): RestaurantInfo_Fragment {
             val fragment = RestaurantInfo_Fragment()
             val data = Bundle()
-            data.putString("Name",name)
-            data.putString("Address",address)
-            data.putString("Phone",phone)
+            data.putParcelable("Restaurant", restaurant)
             fragment.arguments = data
             return fragment
         }
     }
-
-
 }

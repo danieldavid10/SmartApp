@@ -9,8 +9,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.android.gms.tasks.Task
-import com.google.firebase.functions.FirebaseFunctions
 
 import com.infoarch.smartrestoadminapp.R
 import com.infoarch.smartrestoadminapp.RestaurantMainActivity
@@ -23,45 +21,10 @@ import kotlinx.android.synthetic.main.fragment_restaurant_list.view.*
 
 class RestaurantList : Fragment() {
 
-    private val mFunctions: FirebaseFunctions by lazy { FirebaseFunctions.getInstance() }
     private val layoutManager by lazy { LinearLayoutManager(context) }
-    private var restaurantList = ArrayList<RestaurantModel>()
+    private var restaurantList: ArrayList<RestaurantModel>? = null
     private lateinit var adapter: RestaurantAdapter
     private lateinit var recycler: RecyclerView
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        if (savedInstanceState == null) {
-            getRestaurantList()
-                .addOnCompleteListener { task ->
-                    if (!task.isSuccessful) {
-                        activity?.toastMessage("Failed to load the list of restaurants.")
-                    } else {
-                        if (task.result != null) {
-                            val restaurants: ArrayList<HashMap<*, *>> = task.result!!
-                            for (restaurant in restaurants) {
-                                restaurantList.add(
-                                    RestaurantModel(
-                                        restaurant["key"].toString(),
-                                        restaurant["address"].toString(),
-                                        restaurant["bgcolor"].toString(),
-                                        restaurant["color"].toString().toInt(),
-                                        restaurant["image"].toString(),
-                                        restaurant["name"].toString(),
-                                        restaurant["phonenumber"].toString(),
-                                        restaurant["isSelected"].toString().toBoolean()
-                                    )
-                                )
-                            }
-                            setRecyclerView()
-                        } else {
-                            activity?.toastMessage("Empty restaurants list.")
-                        }
-                    }
-                }
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -71,22 +34,22 @@ class RestaurantList : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_restaurant_list, container, false)
 
         recycler = rootView.recyclerView_RestaurantsList as RecyclerView
-
-        setRecyclerView()
+        restaurantList = arguments?.getParcelableArrayList("RestaurantList")
+        setRecyclerView(restaurantList!!)
         return rootView
     }
 
-    private fun getRestaurantList(): Task<ArrayList<HashMap<*, *>>> {
-        return mFunctions
-            .getHttpsCallable("getUserAdminRestaurants")
-            .call()
-            .continueWith { task ->
-                val list = task.result?.data
-                (list as HashMap<*, *>)["restaurants"] as ArrayList<HashMap<*, *>>
-            }
+    companion object {
+        fun setRestaurantList(restaurantList: ArrayList<RestaurantModel>): RestaurantList {
+            val fragment = RestaurantList()
+            val data = Bundle()
+            data.putParcelableArrayList("RestaurantList", restaurantList)
+            fragment.arguments = data
+            return fragment
+        }
     }
 
-    private fun setRecyclerView() {
+    private fun setRecyclerView(restaurantList: ArrayList<RestaurantModel>) {
         recycler.setHasFixedSize(true)
         recycler.itemAnimator = DefaultItemAnimator()
         recycler.layoutManager = layoutManager
@@ -97,18 +60,13 @@ class RestaurantList : Fragment() {
             }
 
             override fun onInformationClick(restaurant: RestaurantModel, position: Int) {
-                activity?.goToActivity<RestaurantMainActivity>{
-                    this.putExtra("Key",restaurant.key)
-                    this.putExtra("Address",restaurant.address)
-                    this.putExtra("BgColor",restaurant.bgColor)
-                    this.putExtra("Color",restaurant.color)
-                    this.putExtra("Image",restaurant.image)
-                    this.putExtra("Name",restaurant.name)
-                    this.putExtra("PhoneNumber",restaurant.phoneNumber)
-                    this.putExtra("isSelected",restaurant.isSelected)
+                activity?.goToActivity<RestaurantMainActivity> {
+                    this.putExtra("Restaurant", restaurant)
                 }
             }
         }))
         recycler.adapter = adapter
     }
 }
+
+
