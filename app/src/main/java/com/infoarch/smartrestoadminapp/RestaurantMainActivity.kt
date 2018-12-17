@@ -1,8 +1,6 @@
 package com.infoarch.smartrestoadminapp
 
 import android.support.design.widget.TabLayout
-import android.support.design.widget.Snackbar
-
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
@@ -14,6 +12,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import com.infoarch.smartrestoadminapp.components.ToolbarActivity
+import com.infoarch.smartrestoadminapp.components.goToActivity
 import com.infoarch.smartrestoadminapp.fragments.RestaurantInfo_Fragment
 import com.infoarch.smartrestoadminapp.struct.RestaurantModel
 import com.squareup.picasso.Picasso
@@ -24,25 +23,17 @@ import kotlinx.android.synthetic.main.fragment_restaurant_main.view.*
 class RestaurantMainActivity : ToolbarActivity() {
 
     private lateinit var restaurant: RestaurantModel
-
-
-    /**
-     * The [android.support.v4.view.PagerAdapter] that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * [android.support.v4.app.FragmentStatePagerAdapter].
-     */
     private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_restaurant_main)
 
-//        setSupportActionBar(toolbar)
         toolbarToLoad(toolbar as Toolbar)
         enableHomeDisplay(true)
+        (toolbar as Toolbar).setNavigationOnClickListener {
+            super.onBackPressed()
+        }
 
         getIntentExtras()
 
@@ -59,9 +50,17 @@ class RestaurantMainActivity : ToolbarActivity() {
         container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
         tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
 
-        floatingButton.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        floatingButton.setOnClickListener {
+            goToActivity<EditRestaurantActivity>{
+                this.putExtra("Key",restaurant.key)
+                this.putExtra("Address",restaurant.address)
+                this.putExtra("BgColor",restaurant.bgColor)
+                this.putExtra("Color",restaurant.color)
+                this.putExtra("Image",restaurant.image)
+                this.putExtra("Name",restaurant.name)
+                this.putExtra("PhoneNumber",restaurant.phoneNumber)
+                this.putExtra("isSelected",restaurant.isSelected)
+            }
         }
 
 
@@ -79,7 +78,6 @@ class RestaurantMainActivity : ToolbarActivity() {
             intent.getBooleanExtra("isSelected", false)
         )
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.

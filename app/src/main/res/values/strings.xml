@@ -17,6 +17,16 @@
     <string name="text_address">Address</string>
     <string name="text_phoneNumber">Phone Number</string>
 
+    <!--Edit Restaurant-->
+    <string name="title_edit_layout">Edit Information</string>
+    <string name="text_edit_name">Restaurant Name</string>
+    <string name="text_edit_address">Address</string>
+    <string name="text_edit_phone">Phone Number</string>
+    <string name="text_edit_image">Image</string>
+    <string name="text_edit_bgColor">Color</string>
+    <string name="text_edit_location">Map Location</string>
+
+
     <!--Tabs Titles-->
     <string name="tab_Information">Information</string>
     <string name="tab_Reservations">Reservations</string>

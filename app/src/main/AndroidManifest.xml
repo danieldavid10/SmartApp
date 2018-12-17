@@ -23,7 +23,6 @@
                 android:name=".LoginActivity"
                 android:screenOrientation="portrait"
                 android:theme="@style/NoPreview">
-
         </activity>
         <activity
                 android:name=".InformationActivity"
@@ -47,6 +46,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".EditRestaurant">
+        </activity>
+        <activity android:name=".EditRestaurantActivity">
         </activity>
     </application>
 

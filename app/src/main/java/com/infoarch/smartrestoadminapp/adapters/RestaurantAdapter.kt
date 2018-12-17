@@ -31,7 +31,6 @@ class RestaurantAdapter(
         fun bind(restaurant: RestaurantModel, listener: RecyclerRestaurantListener) = with(itemView) {
             // Fields of restaurant_item
             text_Name.text = restaurant.name
-            text_Address.text = restaurant.address
             Picasso.get().load(restaurant.image).fit().into(imageView_Image)
             // Events
             setOnClickListener { listener.onClick(restaurant, adapterPosition) }

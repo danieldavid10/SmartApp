@@ -27,38 +27,24 @@
         <View
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:background="@color/TransparentColor"
+                android:background="@drawable/degrade_font_black"
                 android:layout_gravity="bottom"/>
 
         <TextView
                 android:id="@+id/text_Name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Restaurant Name"
-                android:textSize="18sp"
-                android:layout_marginTop="123dp"
+                android:textSize="15sp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginStart="5dp"
                 android:shadowColor="#000"
                 android:shadowDx="3"
                 android:shadowDy="3"
+                android:layout_gravity="bottom"
                 android:shadowRadius="3"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textStyle="bold"/>
-
-        <TextView
-                android:id="@+id/text_Address"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Restaurant Address"
-                android:layout_marginTop="155dp"
-                android:layout_marginStart="5dp"
-                android:shadowColor="#000"
-                android:shadowDx="3"
-                android:shadowDy="3"
-                android:shadowRadius="3"
-                android:textAllCaps="true"
-                android:textColor="@color/white"/>
 
         <Button
                 android:id="@+id/button_Information"
@@ -70,7 +56,7 @@
                 android:layout_marginTop="145dp"
                 android:layout_marginEnd="5dp"
                 android:textAllCaps="false"
-                android:background="@drawable/button_rounded_bg"/>
+                android:background="@drawable/button_ripple_bg"/>
 
     </FrameLayout>
 
